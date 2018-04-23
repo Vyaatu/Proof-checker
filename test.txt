@@ -1,0 +1,117 @@
+axiom doubleNeg: ~~A => A;
+
+axiom exclMiddleHelper: ~~(A \/ ~A) => (A \/ ~A);
+
+goal exclMiddle: P \/ ~P
+proof
+  [ ~(P \/ ~P) :
+    [ P :
+      P \/ ~P;
+      F ];
+    ~P;
+    P \/ ~P;
+    F ];
+  ~~(P \/ ~P);
+  ~~(P \/ ~P) => (P \/ ~P);
+  P \/ ~P;
+end.
+
+goal invalidAxiom: (A => B) \/ ~(A => B)
+proof
+end.
+
+goal hypotheticalSyllogism: (P => Q) /\ (Q => R) => (P => R)
+proof
+  [ (P => Q) /\ (Q => R) :
+    P => Q;
+    Q => R;
+    [ P :
+      Q;
+      R ];
+    P => R ];
+  (P => Q) /\ (Q => R) => (P => R)
+end.
+
+goal modusPonensIncomplete: A /\ (A => B) => B
+proof
+  [ A /\ (A => B) :
+    A;
+    B ];
+  A /\ (A => B) => B
+end.
+
+goal modusPonens: A /\ (A => B) => B
+proof
+  [ A /\ (A => B) :
+    A;
+    A => B;
+    B ];
+  A /\ (A => B) => B
+end.
+
+goal elipse: A => B => A
+proof
+  [ A : [ B : A ];
+    B => A];
+    A => B => A
+end.
+
+goal noBox: T
+proof
+end.
+
+goal claviusLaw: (~P => P) => P
+proof
+  [ ~P => P :
+    P \/ ~P;
+    [ ~P :
+      P ];
+    [ P :
+      P ];
+    P ];
+  (~P => P) => P
+end.
+
+goal eqIntrTest: P <=> P
+proof
+  [ P :
+    P ];
+  P => P;
+  P <=> P
+end.
+
+goal eqElimTest: (P <=> P) => (P => P)
+proof
+  [ P <=> P :
+    P => P ];
+  (P <=> P) => (P => P)
+end.
+
+goal andIntrTest: ((A /\ B) => C) => A => B => C
+proof
+  [ (A /\ B) => C :
+    [ A :
+      [ B :
+        A /\ B;
+        C ];
+      B => C ];
+    A => B => C];
+  ((A /\ B) => C) => A => B => C
+end.
+
+goal fatalErrorTest: (A => B) => B
+proof
+  [ (A => B) :
+    X ];
+  (A => B) => B
+end.
+
+goal invalid: X
+proof
+end.
+
+axiom assumeAbsurd: A;
+
+goal ifAbsurdThenCorrect: X
+proof
+end.
